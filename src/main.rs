@@ -45,8 +45,8 @@ fn main() {
 	let chars: Vec<char> = code.chars().collect();
 	while pc < chars.len() {
 		match chars[pc] {
-			'+' => tape[ptr] += 1,
-			'-' => tape[ptr] -= 1,
+			'+' => tape[ptr] = tape[ptr].wrapping_add(1),
+			'-' => tape[ptr] = tape[ptr].wrapping_sub(1),
 			'>' => ptr += 1,
 			'<' => ptr -= 1,
 			'.' => print!("{}", tape[ptr] as char),
