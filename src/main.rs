@@ -31,6 +31,7 @@ fn main() {
 		}
 	}
 
+	// finally get the code after all the checks
 	let code: String = match try_read_file(file_path) {
 		Some(f) => f,
 		None => {
@@ -39,6 +40,8 @@ fn main() {
 		}
 	};
 
+	// hashmap containing indexes of the brackets for the [] loop syntax
+	// the key is the index of the opening and the value is the index of the closing
 	let jump_table = build_jump_table(&code);
 
 	// loop over the characters in the code
