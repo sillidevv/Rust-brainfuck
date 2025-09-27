@@ -3,11 +3,11 @@
 Tiny bad brainfuck interpreter written in rust
 
 ### How to use
-Either get one of the releases (if you're on windows) or just clone the repo and run/build.
+Clone the repo and run/build using cargo, or get one of the releases and rename the executable to 'rustbrainfuck' (only if you are on windows)
 
-Im too lazy to do cross compilation, so if youre on linux, macos (whatever) just build it from source using cargo
+###### *(Im too lazy to do cross compilation, so if youre on linux, macos (whatever) just build it from source using cargo)*
 
-Once you've got an executable of it you can run it on any file. For example:
+Once you've got an executable of it you can run it on any file, for example:
 
 ```shell
 rustbrainfuck code.bf
