@@ -3,7 +3,10 @@
 Tiny bad brainfuck interpreter written in rust
 
 ### How to use
-Either get one of the releases or just clone the repo and run/build.
+Either get one of the releases (if you're on windows) or just clone the repo and run/build.
+
+Im too lazy to do cross compilation, so if youre on linux, macos (whatever) just build it from source using cargo
+
 Once you've got an executable of it you can run it on any file. For example:
 
 ```shell
