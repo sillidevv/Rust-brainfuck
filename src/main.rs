@@ -19,12 +19,12 @@ fn main() {
 			return;
 		}
 	};
-	
+
 	if !check_file_exists(file_path) {
 		println!("'{file_path}' is not a file");
 		return;
 	}
-	
+
 	// finally get the code after all the checks
 	let code: String = match try_read_file(file_path) {
 		Some(f) => f,
@@ -63,16 +63,16 @@ fn main() {
 
 // builds and returns a jump table from the code
 // separated from main function cause a bit verbose
-fn build_jump_table(code: &String) -> HashMap<usize, usize> {
+fn build_jump_table(code: &str) -> HashMap<usize, usize> {
 	let mut stack = Vec::new();
 	let mut table = HashMap::new();
-	
+
 	for (i, c) in code.chars().enumerate() {
 		if c == '[' {
 			stack.push(i);
 		} else if c == ']' {
 			let start = stack.pop().expect("unmatched ]");
-			
+
 			table.insert(start, i);
 			table.insert(i, start);
 		}
