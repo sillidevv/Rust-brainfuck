@@ -19,18 +19,12 @@ fn main() {
 			return;
 		}
 	};
-
-	// check if file exists, if no then say its not a file
-	{
-		let path = Path::new(file_path);
-
-		// if file doesnt exist
-		if !path.exists() || !path.is_file() {
-			println!("'{file_path}' is not a file");
-			return;
-		}
+	
+	if !check_file_exists(file_path) {
+		println!("'{file_path}' is not a file");
+		return;
 	}
-
+	
 	// finally get the code after all the checks
 	let code: String = match try_read_file(file_path) {
 		Some(f) => f,
@@ -72,11 +66,13 @@ fn main() {
 fn build_jump_table(code: &String) -> HashMap<usize, usize> {
 	let mut stack = Vec::new();
 	let mut table = HashMap::new();
+	
 	for (i, c) in code.chars().enumerate() {
 		if c == '[' {
 			stack.push(i);
 		} else if c == ']' {
 			let start = stack.pop().expect("unmatched ]");
+			
 			table.insert(start, i);
 			table.insert(i, start);
 		}
@@ -87,4 +83,9 @@ fn build_jump_table(code: &String) -> HashMap<usize, usize> {
 fn try_read_file(path: &str) -> Option<String> {
 	fs::read_to_string(path)
 		.ok()
+}
+
+fn check_file_exists(path: &str) -> bool {
+	let path = Path::new(path);
+	path.exists() || path.is_file()
 }
